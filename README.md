@@ -1,7 +1,7 @@
 # LMUTools
 
 A little project to make myself easy to use Le Mans ultimate
-- Replay files: browse, load replay files, combined with result xml file to jump to a driver on a certain moment in the session.
+- Replay: browse, load replay files, combined with result xml file to jump to a driver on a certain moment in the session. Use the right mouse button in the listview to select and jump to the moment on track for that driver.
 
 We use the rest API of Le Mans Ultimate.
 Made with Visual Studio Community 2022.
