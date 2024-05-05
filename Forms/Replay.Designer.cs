@@ -84,6 +84,16 @@
             label4 = new Label();
             cmLaptime = new ContextMenuStrip(components);
             jumpToLapToolStripMenuItem = new ToolStripMenuItem();
+            groupBox1 = new GroupBox();
+            btnSpeed7 = new Button();
+            btnSpeed2 = new Button();
+            btnSpeed10 = new Button();
+            btnSpeed6 = new Button();
+            btnSpeed9 = new Button();
+            btnSpeed8 = new Button();
+            btnSpeed5 = new Button();
+            btnSpeed4 = new Button();
+            btnSpeed3 = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -93,6 +103,7 @@
             cmIncident.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudTimeSync).BeginInit();
             cmLaptime.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -494,11 +505,121 @@
             jumpToLapToolStripMenuItem.Text = "Jump to lap";
             jumpToLapToolStripMenuItem.Click += jumpToLapToolStripMenuItem_Click;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(btnSpeed7);
+            groupBox1.Controls.Add(btnSpeed2);
+            groupBox1.Controls.Add(btnSpeed10);
+            groupBox1.Controls.Add(btnSpeed6);
+            groupBox1.Controls.Add(btnSpeed9);
+            groupBox1.Controls.Add(btnSpeed8);
+            groupBox1.Controls.Add(btnSpeed5);
+            groupBox1.Controls.Add(btnSpeed4);
+            groupBox1.Controls.Add(btnSpeed3);
+            groupBox1.Location = new Point(666, 35);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(528, 50);
+            groupBox1.TabIndex = 12;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Speed Controller";
+            // 
+            // btnSpeed7
+            // 
+            btnSpeed7.Location = new Point(285, 21);
+            btnSpeed7.Name = "btnSpeed7";
+            btnSpeed7.Size = new Size(56, 23);
+            btnSpeed7.TabIndex = 16;
+            btnSpeed7.Text = ">";
+            btnSpeed7.UseVisualStyleBackColor = true;
+            btnSpeed7.Click += btnSpeed7_Click;
+            // 
+            // btnSpeed2
+            // 
+            btnSpeed2.Location = new Point(6, 21);
+            btnSpeed2.Name = "btnSpeed2";
+            btnSpeed2.Size = new Size(56, 23);
+            btnSpeed2.TabIndex = 13;
+            btnSpeed2.Text = "<<<<";
+            btnSpeed2.UseVisualStyleBackColor = true;
+            btnSpeed2.Click += btnSpeed2_Click;
+            // 
+            // btnSpeed10
+            // 
+            btnSpeed10.Location = new Point(453, 21);
+            btnSpeed10.Name = "btnSpeed10";
+            btnSpeed10.Size = new Size(56, 23);
+            btnSpeed10.TabIndex = 18;
+            btnSpeed10.Text = ">>>>";
+            btnSpeed10.UseVisualStyleBackColor = true;
+            btnSpeed10.Click += btnSpeed10_Click;
+            // 
+            // btnSpeed6
+            // 
+            btnSpeed6.Location = new Point(229, 21);
+            btnSpeed6.Name = "btnSpeed6";
+            btnSpeed6.Size = new Size(56, 23);
+            btnSpeed6.TabIndex = 15;
+            btnSpeed6.Text = "||";
+            btnSpeed6.UseVisualStyleBackColor = true;
+            btnSpeed6.Click += btnSpeed6_Click;
+            // 
+            // btnSpeed9
+            // 
+            btnSpeed9.Location = new Point(397, 21);
+            btnSpeed9.Name = "btnSpeed9";
+            btnSpeed9.Size = new Size(56, 23);
+            btnSpeed9.TabIndex = 17;
+            btnSpeed9.Text = ">>>";
+            btnSpeed9.UseVisualStyleBackColor = true;
+            btnSpeed9.Click += btnSpeed9_Click;
+            // 
+            // btnSpeed8
+            // 
+            btnSpeed8.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            btnSpeed8.Location = new Point(341, 21);
+            btnSpeed8.Name = "btnSpeed8";
+            btnSpeed8.Size = new Size(56, 23);
+            btnSpeed8.TabIndex = 15;
+            btnSpeed8.Text = ">>";
+            btnSpeed8.UseVisualStyleBackColor = true;
+            btnSpeed8.Click += btnSpeed8_Click;
+            // 
+            // btnSpeed5
+            // 
+            btnSpeed5.Location = new Point(173, 21);
+            btnSpeed5.Name = "btnSpeed5";
+            btnSpeed5.Size = new Size(56, 23);
+            btnSpeed5.TabIndex = 14;
+            btnSpeed5.Text = "<";
+            btnSpeed5.UseVisualStyleBackColor = true;
+            btnSpeed5.Click += btnSpeed5_Click;
+            // 
+            // btnSpeed4
+            // 
+            btnSpeed4.Location = new Point(118, 21);
+            btnSpeed4.Name = "btnSpeed4";
+            btnSpeed4.Size = new Size(56, 23);
+            btnSpeed4.TabIndex = 13;
+            btnSpeed4.Text = "<<";
+            btnSpeed4.UseVisualStyleBackColor = true;
+            btnSpeed4.Click += btnSpeed4_Click;
+            // 
+            // btnSpeed3
+            // 
+            btnSpeed3.Location = new Point(62, 21);
+            btnSpeed3.Name = "btnSpeed3";
+            btnSpeed3.Size = new Size(56, 23);
+            btnSpeed3.TabIndex = 0;
+            btnSpeed3.Text = "<<<";
+            btnSpeed3.UseVisualStyleBackColor = true;
+            btnSpeed3.Click += btnSpeed3_Click;
+            // 
             // Replay
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1602, 779);
+            Controls.Add(groupBox1);
             Controls.Add(label4);
             Controls.Add(nudTimeSync);
             Controls.Add(button1);
@@ -527,6 +648,7 @@
             cmIncident.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)nudTimeSync).EndInit();
             cmLaptime.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -588,5 +710,15 @@
         private ColumnHeader columnHeader22;
         private Label lblCar;
         private ToolStripMenuItem jumpToLapToolStripMenuItem;
+        private GroupBox groupBox1;
+        private Button btnSpeed7;
+        private Button btnSpeed2;
+        private Button btnSpeed10;
+        private Button btnSpeed6;
+        private Button btnSpeed9;
+        private Button btnSpeed8;
+        private Button btnSpeed5;
+        private Button btnSpeed4;
+        private Button btnSpeed3;
     }
 }

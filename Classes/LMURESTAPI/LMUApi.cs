@@ -138,6 +138,42 @@ namespace LMUTools.Classes.LMURESTAPI
 
         }
 
+        public async Task<Boolean> PostLMUReplayPlaybackCommand(Int32 Speed)
+        {
+            try
+            {
+
+                if(Speed >= 2 && Speed <= 10)
+                {
+                    StringContent queryString = new StringContent(Speed.ToString(), Encoding.UTF8, "application/json");
+
+                    var httpResponse = await _client.PostAsync(BaseUrl + "/replay/playbackcommand", queryString);
+
+                    if (!httpResponse.IsSuccessStatusCode)
+                    {
+                        return false;
+                    }
+
+                    //var content = await httpResponse.Content.ReadAsStringAsync();
+                    //var replayInfo = JsonConvert.DeserializeObject<LMUReplay>(content);
+
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+
         public async Task<String> GetLMUReplayPlayID(int ID)
         {
             try

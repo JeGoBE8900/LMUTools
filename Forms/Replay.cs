@@ -139,7 +139,7 @@ namespace LMUTools.Forms
             {
                 //blabla
             }
-  
+
 
 
 
@@ -341,7 +341,7 @@ namespace LMUTools.Forms
 
         private void lvwStandings_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void cboResultIncDriver_SelectedIndexChanged(object sender, EventArgs e)
@@ -517,6 +517,51 @@ namespace LMUTools.Forms
         {
             if (closePending) this.Close();
             closePending = false;
+        }
+
+        private void btnSpeed2_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand(2);
+        }
+
+        private void btnSpeed3_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand(3);
+        }
+
+        private void btnSpeed4_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand(4);
+        }
+
+        private void btnSpeed5_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand(5);
+        }
+
+        private void btnSpeed6_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand(6);
+        }
+
+        private void btnSpeed7_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand(7);
+        }
+
+        private void btnSpeed8_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand(8);
+        }
+
+        private void btnSpeed9_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand(9);
+        }
+
+        private void btnSpeed10_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand(10);
         }
     }
 }
