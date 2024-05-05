@@ -12,7 +12,7 @@ You'll probably need to install .NET Desktop Runtime 8 (https://dotnet.microsoft
 ![image](https://github.com/JeGoBE8900/LMUTools/assets/168869412/0f9dadfc-dbca-4bcd-aabe-0bfff4164d5c)
 
 What is not (yet) implemented:
-- Changing views (cockpit, swingman, trackside, ...) Rest api unknown.
+- Changing views (cockpit, swingman, trackside, ...) Rest api unknown. Use keymaps in game.
 
 Known issues:
 - Causes freezes while driving and the tool is polling the rest API
