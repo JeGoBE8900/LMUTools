@@ -6,7 +6,7 @@ namespace LMUTools.Classes.LMURESTAPI
 
     public sealed class LMUAPIRestService
     {
-        private const string BaseUrl = "http://localhost:6397/rest";
+        private const string BaseUrl = "http://localhost:6397";
         private readonly HttpClient _client;
         private Boolean _apiReady;
 
@@ -19,7 +19,7 @@ namespace LMUTools.Classes.LMURESTAPI
         {
             try
             {
-                var httpResponse = await _client.GetAsync(BaseUrl + "/watch/replays");
+                var httpResponse = await _client.GetAsync(BaseUrl + "/rest/watch/replays");
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
@@ -42,7 +42,7 @@ namespace LMUTools.Classes.LMURESTAPI
         {
             try
             {
-                var httpResponse = await _client.GetAsync(BaseUrl + "/watch/standings");
+                var httpResponse = await _client.GetAsync(BaseUrl + "/rest/watch/standings");
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
@@ -68,7 +68,7 @@ namespace LMUTools.Classes.LMURESTAPI
             try
             {
 
-                var httpResponse = await _client.GetAsync(BaseUrl + "/watch/replayInfo");
+                var httpResponse = await _client.GetAsync(BaseUrl + "/rest/watch/replayInfo");
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
@@ -92,7 +92,7 @@ namespace LMUTools.Classes.LMURESTAPI
             try
             {
 
-                var httpResponse = await _client.PutAsync(BaseUrl + "/replay/camera/" + slotId,null);
+                var httpResponse = await _client.PutAsync(BaseUrl + "/rest/replay/camera/" + slotId,null);
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
@@ -118,7 +118,7 @@ namespace LMUTools.Classes.LMURESTAPI
             {
                 StringContent queryString = new StringContent(time.ToString(),Encoding.UTF8, "application/json");
 
-                var httpResponse = await _client.PutAsync(BaseUrl + "/replay/replaytime", queryString);
+                var httpResponse = await _client.PutAsync(BaseUrl + "/rest/replay/replaytime", queryString);
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
@@ -147,7 +147,7 @@ namespace LMUTools.Classes.LMURESTAPI
                 {
                     StringContent queryString = new StringContent(Speed.ToString(), Encoding.UTF8, "application/json");
 
-                    var httpResponse = await _client.PostAsync(BaseUrl + "/replay/playbackcommand", queryString);
+                    var httpResponse = await _client.PostAsync(BaseUrl + "/rest/replay/playbackcommand", queryString);
 
                     if (!httpResponse.IsSuccessStatusCode)
                     {
@@ -178,7 +178,7 @@ namespace LMUTools.Classes.LMURESTAPI
         {
             try
             {
-                var httpResponse = await _client.GetAsync(BaseUrl + "/watch/play/" + ID);
+                var httpResponse = await _client.GetAsync(BaseUrl + "/rest/watch/play/" + ID);
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
@@ -200,7 +200,7 @@ namespace LMUTools.Classes.LMURESTAPI
         {
             try
             {
-                var httpResponse = await _client.GetAsync(BaseUrl + "/watch/sessionInfo/");
+                var httpResponse = await _client.GetAsync(BaseUrl + "/rest/watch/sessionInfo/");
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
@@ -230,7 +230,7 @@ namespace LMUTools.Classes.LMURESTAPI
         {
             try
             {
-                var httpResponse = await _client.GetAsync(BaseUrl + "/watch/replay/isActive");
+                var httpResponse = await _client.GetAsync(BaseUrl + "/rest/watch/replay/isActive");
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
@@ -260,7 +260,7 @@ namespace LMUTools.Classes.LMURESTAPI
         {
             try
             {
-                var httpResponse = await _client.GetAsync(BaseUrl + "/watch/focus");
+                var httpResponse = await _client.GetAsync(BaseUrl + "/rest/watch/focus");
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
@@ -284,7 +284,9 @@ namespace LMUTools.Classes.LMURESTAPI
         {
             try
             {
-                var httpResponse = await _client.GetAsync(BaseUrl + "/watch/replays");
+                //http://localhost:6397/navigation/state
+                //var httpResponse = await _client.GetAsync(BaseUrl + "/watch/replays");  zorgt voor time-outs in game
+                var httpResponse = await _client.GetAsync(BaseUrl + "/navigation/state");
                 _apiReady = httpResponse.IsSuccessStatusCode;
 
             }catch (Exception ex)

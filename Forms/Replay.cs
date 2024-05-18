@@ -13,8 +13,8 @@ namespace LMUTools.Forms
         { get; set; }
 
         private XDocument _ResultXMLContent;
-
         private bool closePending;
+        private int _timeBetweenCalls;
 
 
         public Replay()
@@ -37,131 +37,136 @@ namespace LMUTools.Forms
 
             }
 
+            _timeBetweenCalls = 250;
+
 
 
         }
 
         private async void bwReplayInfo_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            try
+            do
             {
-                do
+
+                //Replay info, get last played or current playing replayfle
+                Classes.LMURESTAPI.LMUReplay replayInfo = (await oLMUAPIRestService.GetLMUReplayInfoAsync());
+                string sReplayInfo = "";
+
+                if (replayInfo != null)
                 {
+                    sReplayInfo = replayInfo.ToString();
+                }
 
-                    //Replay info, get last played or current playing replayfle
-                    Classes.LMURESTAPI.LMUReplay replayInfo = (await oLMUAPIRestService.GetLMUReplayInfoAsync());
-                    string sReplayInfo = "";
+                Action actionReplayInfo = () => txtReplayInfo.Text = sReplayInfo;
+                txtReplayInfo.Invoke(actionReplayInfo);
 
-                    if (replayInfo != null)
+
+                Thread.Sleep(_timeBetweenCalls);
+                if (closePending) { break; }
+
+
+                //session information
+
+                string sessionInfo = (await oLMUAPIRestService.GetLMUSessionInfo());
+
+                Action actionSessionInfo = () => txtSessionInfo.Text = sessionInfo;
+                txtSessionInfo.Invoke(actionSessionInfo);
+
+
+                Thread.Sleep(_timeBetweenCalls);
+                if (closePending) { break; }
+
+
+                //replay is active
+
+                Boolean isReplayActive = (await oLMUAPIRestService.GetLMUReplayIsActive());
+
+                string sReplayActive = "Not active";
+                if (isReplayActive)
+                {
+                    sReplayActive = "Active";
+                }
+
+                Action actionReplayIsActive = () => lblIsActive.Text = sReplayActive;
+                lblIsActive.Invoke(actionReplayIsActive);
+
+
+                Thread.Sleep(_timeBetweenCalls);
+                if (closePending) { break; }
+
+
+                //standings & focus
+
+                var standings = (await oLMUAPIRestService.GetLMUStandingAsync());
+
+                //eerst zien hoeveel listview items we nodig hebben
+                int slots2add = standings.Count - lvwStandings.Items.Count;
+                if (slots2add > 0)
+                {
+                    for (int i = 0; i < slots2add; i++)
                     {
-                        sReplayInfo = replayInfo.ToString();
-                    }
+                        ListViewItem li = new ListViewItem();
+                        li.SubItems.Add("");
+                        li.SubItems.Add("");
+                        li.SubItems.Add("");
+                        li.SubItems.Add("");
 
-                    Action actionReplayInfo = () => txtReplayInfo.Text = sReplayInfo;
-                    txtReplayInfo.Invoke(actionReplayInfo);
-
-
-                    //session information
-
-                    string sessionInfo = (await oLMUAPIRestService.GetLMUSessionInfo());
-
-                    Action actionSessionInfo = () => txtSessionInfo.Text = sessionInfo;
-                    txtSessionInfo.Invoke(actionSessionInfo);
-
-
-                    //replay is active
-
-                    Boolean isReplayActive = (await oLMUAPIRestService.GetLMUReplayIsActive());
-
-                    string sReplayActive = "Not active";
-                    if (isReplayActive)
-                    {
-                        sReplayActive = "Active";
-                    }
-
-                    Action actionReplayIsActive = () => lblIsActive.Text = sReplayActive;
-                    lblIsActive.Invoke(actionReplayIsActive);
-
-
-
-                    //standings & focus
-
-                    var standings = (await oLMUAPIRestService.GetLMUStandingAsync());
-
-                    //eerst zien hoeveel listview items we nodig hebben
-                    int slots2add = standings.Count - lvwStandings.Items.Count;
-                    if (slots2add > 0)
-                    {
-                        for (int i = 0; i < slots2add; i++)
-                        {
-                            ListViewItem li = new ListViewItem();
-                            li.SubItems.Add("");
-                            li.SubItems.Add("");
-                            li.SubItems.Add("");
-                            li.SubItems.Add("");
-
-                            Action actionUpdateStanding1 = () => lvwStandings.Items.Add(li);
-                            lvwStandings.Invoke(actionUpdateStanding1);
-
-                        }
-                    }
-                    else if (slots2add < 0)
-                    {
-                        slots2add = slots2add * -1;
-
-                        for (int i = 0; i < slots2add; i++)
-                        {
-                            Action actionUpdateStanding2 = () => lvwStandings.Items.RemoveAt(lvwStandings.Items.Count - 1);
-                            lvwStandings.Invoke(actionUpdateStanding2);
-
-                        }
+                        Action actionUpdateStanding1 = () => lvwStandings.Items.Add(li);
+                        lvwStandings.Invoke(actionUpdateStanding1);
 
                     }
+                }
+                else if (slots2add < 0)
+                {
+                    slots2add = slots2add * -1;
 
-                    foreach (Classes.LMURESTAPI.LMUStanding o in standings)
+                    for (int i = 0; i < slots2add; i++)
                     {
-                        if (o.position > 0)
-                        {
-                            Action actionUpdateStanding3 = () => UpdateListviewItem(o);
-                            lvwStandings.Invoke(actionUpdateStanding3);
-                        }
+                        Action actionUpdateStanding2 = () => lvwStandings.Items.RemoveAt(lvwStandings.Items.Count - 1);
+                        lvwStandings.Invoke(actionUpdateStanding2);
+
                     }
 
-                    //focus
+                }
 
+                if (closePending) { break; }
 
+                foreach (Classes.LMURESTAPI.LMUStanding o in standings)
+                {
+                    if (o.position > 0)
+                    {
+                        Action actionUpdateStanding3 = () => UpdateListviewItem(o);
+                        lvwStandings.Invoke(actionUpdateStanding3);
+                    }
+                }
 
-                    Thread.Sleep(1000);
+                Thread.Sleep(_timeBetweenCalls);
+                if (closePending){break;}
 
-                } while (!closePending);
-            }
-            catch (Exception ex)
-            {
-                //blabla
-            }
-
-
-
+            } while (true) ;
 
         }
 
         private void UpdateListviewItem(LMUStanding o)
         {
-            ListViewItem li = lvwStandings.Items[o.position - 1];
-            li.Tag = o;
-            if (li.SubItems[0].Text != o.position.ToString()) { li.SubItems[0].Text = o.position.ToString(); }
-            if (li.SubItems[1].Text != o.slotID.ToString()) { li.SubItems[1].Text = o.slotID.ToString(); }
-            if (li.SubItems[2].Text != o.driverName.ToString()) { li.SubItems[2].Text = o.driverName.ToString(); };
-            if (li.SubItems[3].Text != o.carClass.ToString()) { li.SubItems[3].Text = o.carClass.ToString(); };
-            if (li.SubItems[4].Text != o.vehicleName.ToString()) { li.SubItems[4].Text = o.vehicleName.ToString(); };
+            if(lvwStandings.Items.Count >= o.position)
+            {
+                ListViewItem li = lvwStandings.Items[o.position - 1];
+                li.Tag = o;
+                if (li.SubItems[0].Text != o.position.ToString()) { li.SubItems[0].Text = o.position.ToString(); }
+                if (li.SubItems[1].Text != o.slotID.ToString()) { li.SubItems[1].Text = o.slotID.ToString(); }
+                if (li.SubItems[2].Text != o.driverName.ToString()) { li.SubItems[2].Text = o.driverName.ToString(); };
+                if (li.SubItems[3].Text != o.carClass.ToString()) { li.SubItems[3].Text = o.carClass.ToString(); };
+                if (li.SubItems[4].Text != o.vehicleName.ToString()) { li.SubItems[4].Text = o.vehicleName.ToString(); };
 
-            if (o.hasFocus && li.BackColor != Color.Yellow)
-            {
-                li.BackColor = Color.Yellow;
-            }
-            else if (!o.hasFocus && li.BackColor != Color.White)
-            {
-                li.BackColor = Color.White;
+                if (o.hasFocus && li.BackColor != Color.Yellow)
+                {
+                    li.BackColor = Color.Yellow;
+                }
+                else if (!o.hasFocus && li.BackColor != Color.White)
+                {
+                    li.BackColor = Color.White;
+                }
             }
 
         }
