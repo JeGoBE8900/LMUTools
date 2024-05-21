@@ -74,6 +74,7 @@
             vCRStreamToolStripMenuItem.Name = "vCRStreamToolStripMenuItem";
             vCRStreamToolStripMenuItem.Size = new Size(180, 22);
             vCRStreamToolStripMenuItem.Text = "VCR Stream";
+            vCRStreamToolStripMenuItem.Visible = false;
             vCRStreamToolStripMenuItem.Click += vCRStreamToolStripMenuItem_Click;
             // 
             // optionsToolStripMenuItem

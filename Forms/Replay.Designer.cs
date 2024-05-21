@@ -94,6 +94,8 @@
             btnSpeed5 = new Button();
             btnSpeed4 = new Button();
             btnSpeed3 = new Button();
+            label7 = new Label();
+            txtCurrentDriver = new TextBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -165,10 +167,10 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
-            tabControl1.Location = new Point(6, 103);
+            tabControl1.Location = new Point(6, 128);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1595, 673);
+            tabControl1.Size = new Size(1595, 648);
             tabControl1.TabIndex = 5;
             // 
             // tabPage1
@@ -177,7 +179,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1587, 645);
+            tabPage1.Size = new Size(1587, 620);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Session Info";
             tabPage1.UseVisualStyleBackColor = true;
@@ -189,7 +191,7 @@
             txtSessionInfo.Multiline = true;
             txtSessionInfo.Name = "txtSessionInfo";
             txtSessionInfo.ReadOnly = true;
-            txtSessionInfo.Size = new Size(1581, 639);
+            txtSessionInfo.Size = new Size(1581, 614);
             txtSessionInfo.TabIndex = 0;
             // 
             // tabPage2
@@ -198,7 +200,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1587, 645);
+            tabPage2.Size = new Size(1587, 620);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Standings";
             tabPage2.UseVisualStyleBackColor = true;
@@ -212,7 +214,7 @@
             lvwStandings.Location = new Point(3, 3);
             lvwStandings.MultiSelect = false;
             lvwStandings.Name = "lvwStandings";
-            lvwStandings.Size = new Size(1581, 639);
+            lvwStandings.Size = new Size(1581, 614);
             lvwStandings.TabIndex = 0;
             lvwStandings.UseCompatibleStateImageBehavior = false;
             lvwStandings.View = View.Details;
@@ -614,11 +616,31 @@
             btnSpeed3.UseVisualStyleBackColor = true;
             btnSpeed3.Click += btnSpeed3_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(10, 95);
+            label7.Name = "label7";
+            label7.Size = new Size(83, 15);
+            label7.TabIndex = 13;
+            label7.Text = "Current driver:";
+            // 
+            // txtCurrentDriver
+            // 
+            txtCurrentDriver.Enabled = false;
+            txtCurrentDriver.Location = new Point(97, 91);
+            txtCurrentDriver.Name = "txtCurrentDriver";
+            txtCurrentDriver.ReadOnly = true;
+            txtCurrentDriver.Size = new Size(460, 23);
+            txtCurrentDriver.TabIndex = 14;
+            // 
             // Replay
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1602, 779);
+            Controls.Add(txtCurrentDriver);
+            Controls.Add(label7);
             Controls.Add(groupBox1);
             Controls.Add(label4);
             Controls.Add(nudTimeSync);
@@ -720,5 +742,7 @@
         private Button btnSpeed5;
         private Button btnSpeed4;
         private Button btnSpeed3;
+        private Label label7;
+        private TextBox txtCurrentDriver;
     }
 }

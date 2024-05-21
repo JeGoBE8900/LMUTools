@@ -140,6 +140,12 @@ namespace LMUTools.Forms
                     }
                 }
 
+                if(standings.Count == 0)
+                {
+                    Action updateCurrentDriverTextBox = () => txtCurrentDriver.Text = "";
+                    txtCurrentDriver.Invoke(updateCurrentDriverTextBox);
+                }
+
                 Thread.Sleep(_timeBetweenCalls);
                 if (closePending){break;}
 
@@ -166,6 +172,11 @@ namespace LMUTools.Forms
                 else if (!o.hasFocus && li.BackColor != Color.White)
                 {
                     li.BackColor = Color.White;
+                }
+
+                if (o.hasFocus)
+                {
+                    txtCurrentDriver.Text = 'p' + o.position + " - " + o.driverName;
                 }
             }
 
