@@ -297,6 +297,45 @@ namespace LMUTools.Classes.LMURESTAPI
             return _apiReady;
         }
 
+
+        public async Task<Boolean> PostLMUReplayCameraControllerSetCamera(Int32 CameraOption)
+        {
+            try
+            {
+                var jsonPost = "";
+
+                if (CameraOption == 0) { jsonPost = "{\"cameraGroup\":\"Driving\",\"direction\":0} "; }
+                else if (CameraOption == 1) { jsonPost = "{\"cameraGroup\":\"Driving\",\"direction\":1} "; }
+                else if (CameraOption == 2) { jsonPost = "{\"cameraGroup\":\"Trackside\",\"direction\":0}  "; }
+                else if (CameraOption == 3) { jsonPost = "{\"cameraGroup\":\"Trackside\",\"direction\":1}  "; }
+                else if (CameraOption == 4) { jsonPost = "{\"cameraGroup\":\"Onboard\",\"direction\":0}  "; }
+                else if (CameraOption == 5) { jsonPost = "{\"cameraGroup\":\"Onboard\",\"direction\":1}  "; }
+                else { return false; }
+
+
+                StringContent queryString = new StringContent(jsonPost, Encoding.UTF8, "application/json");
+                var httpResponse = await _client.PostAsync(BaseUrl + "/rest/replay/CameraController/setCamera", queryString);
+
+                if (!httpResponse.IsSuccessStatusCode)
+                {
+                    return false;
+                }
+
+                //var content = await httpResponse.Content.ReadAsStringAsync();
+                //var replayInfo = JsonConvert.DeserializeObject<LMUReplay>(content);
+
+                return true;
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+
     }
 
 }

@@ -16,6 +16,6 @@ What is not (yet) implemented:
 - Changing views (cockpit, swingman, trackside, ...) Rest api unknown. Use keymaps in game.
 
 Known issues:
-- Causes freezes while driving and the tool is polling the rest API
+- Can causes freezes while driving and the tool is polling the rest API
 
 To support this tool, https://www.paypal.com/donate/?hosted_button_id=XKHD6S28ZUPKC

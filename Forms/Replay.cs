@@ -140,22 +140,22 @@ namespace LMUTools.Forms
                     }
                 }
 
-                if(standings.Count == 0)
+                if (standings.Count == 0)
                 {
                     Action updateCurrentDriverTextBox = () => txtCurrentDriver.Text = "";
                     txtCurrentDriver.Invoke(updateCurrentDriverTextBox);
                 }
 
                 Thread.Sleep(_timeBetweenCalls);
-                if (closePending){break;}
+                if (closePending) { break; }
 
-            } while (true) ;
+            } while (true);
 
         }
 
         private void UpdateListviewItem(LMUStanding o)
         {
-            if(lvwStandings.Items.Count >= o.position)
+            if (lvwStandings.Items.Count >= o.position)
             {
                 ListViewItem li = lvwStandings.Items[o.position - 1];
                 li.Tag = o;
@@ -578,6 +578,36 @@ namespace LMUTools.Forms
         private void btnSpeed10_Click(object sender, EventArgs e)
         {
             oLMUAPIRestService.PostLMUReplayPlaybackCommand(10);
+        }
+
+        private void btnDriving0_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayCameraControllerSetCamera(0);
+        }
+
+        private void btnDriving1_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayCameraControllerSetCamera(1);
+        }
+
+        private void btnTrackside0_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayCameraControllerSetCamera(2);
+        }
+
+        private void btnTrackside1_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayCameraControllerSetCamera(3);
+        }
+
+        private void btnOnboard0_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayCameraControllerSetCamera(4);
+        }
+
+        private void btnOnboard1_Click(object sender, EventArgs e)
+        {
+            oLMUAPIRestService.PostLMUReplayCameraControllerSetCamera(5);
         }
     }
 }

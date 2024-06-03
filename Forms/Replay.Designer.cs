@@ -96,6 +96,16 @@
             btnSpeed3 = new Button();
             label7 = new Label();
             txtCurrentDriver = new TextBox();
+            groupBox2 = new GroupBox();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
+            btnOnboard0 = new Button();
+            btnOnboard1 = new Button();
+            btnTrackside0 = new Button();
+            btnTrackside1 = new Button();
+            btnDriving0 = new Button();
+            btnDriving1 = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -106,6 +116,7 @@
             ((System.ComponentModel.ISupportInitialize)nudTimeSync).BeginInit();
             cmLaptime.SuspendLayout();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -167,10 +178,10 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
-            tabControl1.Location = new Point(6, 128);
+            tabControl1.Location = new Point(6, 125);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1595, 648);
+            tabControl1.Size = new Size(1595, 651);
             tabControl1.TabIndex = 5;
             // 
             // tabPage1
@@ -179,7 +190,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1587, 620);
+            tabPage1.Size = new Size(1587, 623);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Session Info";
             tabPage1.UseVisualStyleBackColor = true;
@@ -191,7 +202,7 @@
             txtSessionInfo.Multiline = true;
             txtSessionInfo.Name = "txtSessionInfo";
             txtSessionInfo.ReadOnly = true;
-            txtSessionInfo.Size = new Size(1581, 614);
+            txtSessionInfo.Size = new Size(1581, 617);
             txtSessionInfo.TabIndex = 0;
             // 
             // tabPage2
@@ -200,7 +211,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1587, 620);
+            tabPage2.Size = new Size(1587, 623);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Standings";
             tabPage2.UseVisualStyleBackColor = true;
@@ -214,7 +225,7 @@
             lvwStandings.Location = new Point(3, 3);
             lvwStandings.MultiSelect = false;
             lvwStandings.Name = "lvwStandings";
-            lvwStandings.Size = new Size(1581, 614);
+            lvwStandings.Size = new Size(1581, 617);
             lvwStandings.TabIndex = 0;
             lvwStandings.UseCompatibleStateImageBehavior = false;
             lvwStandings.View = View.Details;
@@ -250,7 +261,7 @@
             tabPage3.Controls.Add(lvwIncidents);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1587, 645);
+            tabPage3.Size = new Size(1587, 623);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Result | Incidents";
             tabPage3.UseVisualStyleBackColor = true;
@@ -283,7 +294,7 @@
             lvwIncidents.Location = new Point(0, 32);
             lvwIncidents.MultiSelect = false;
             lvwIncidents.Name = "lvwIncidents";
-            lvwIncidents.Size = new Size(1587, 613);
+            lvwIncidents.Size = new Size(1587, 616);
             lvwIncidents.TabIndex = 0;
             lvwIncidents.UseCompatibleStateImageBehavior = false;
             lvwIncidents.View = View.Details;
@@ -310,7 +321,7 @@
             tabPage4.Controls.Add(lvwDriverLaptimes);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1587, 645);
+            tabPage4.Size = new Size(1587, 623);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Result | Driver laptimes";
             tabPage4.UseVisualStyleBackColor = true;
@@ -352,7 +363,7 @@
             lvwDriverLaptimes.Location = new Point(0, 34);
             lvwDriverLaptimes.MultiSelect = false;
             lvwDriverLaptimes.Name = "lvwDriverLaptimes";
-            lvwDriverLaptimes.Size = new Size(1587, 611);
+            lvwDriverLaptimes.Size = new Size(1587, 614);
             lvwDriverLaptimes.TabIndex = 1;
             lvwDriverLaptimes.UseCompatibleStateImageBehavior = false;
             lvwDriverLaptimes.View = View.Details;
@@ -477,7 +488,7 @@
             // 
             // nudTimeSync
             // 
-            nudTimeSync.Location = new Point(815, 6);
+            nudTimeSync.Location = new Point(1022, 11);
             nudTimeSync.Maximum = new decimal(new int[] { 360, 0, 0, 0 });
             nudTimeSync.Minimum = new decimal(new int[] { 360, 0, 0, int.MinValue });
             nudTimeSync.Name = "nudTimeSync";
@@ -488,7 +499,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(666, 9);
+            label4.Location = new Point(873, 14);
             label4.Name = "label4";
             label4.Size = new Size(143, 15);
             label4.TabIndex = 11;
@@ -518,7 +529,7 @@
             groupBox1.Controls.Add(btnSpeed5);
             groupBox1.Controls.Add(btnSpeed4);
             groupBox1.Controls.Add(btnSpeed3);
-            groupBox1.Location = new Point(666, 35);
+            groupBox1.Location = new Point(873, 40);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(528, 50);
             groupBox1.TabIndex = 12;
@@ -634,11 +645,117 @@
             txtCurrentDriver.Size = new Size(460, 23);
             txtCurrentDriver.TabIndex = 14;
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(label10);
+            groupBox2.Controls.Add(label9);
+            groupBox2.Controls.Add(label8);
+            groupBox2.Controls.Add(btnOnboard0);
+            groupBox2.Controls.Add(btnOnboard1);
+            groupBox2.Controls.Add(btnTrackside0);
+            groupBox2.Controls.Add(btnTrackside1);
+            groupBox2.Controls.Add(btnDriving0);
+            groupBox2.Controls.Add(btnDriving1);
+            groupBox2.Location = new Point(653, 6);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(204, 113);
+            groupBox2.TabIndex = 15;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Camera";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(7, 77);
+            label10.Name = "label10";
+            label10.Size = new Size(57, 15);
+            label10.TabIndex = 22;
+            label10.Text = "Onboard:";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(6, 52);
+            label9.Name = "label9";
+            label9.Size = new Size(58, 15);
+            label9.TabIndex = 21;
+            label9.Text = "Trackside:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(6, 27);
+            label8.Name = "label8";
+            label8.Size = new Size(48, 15);
+            label8.TabIndex = 20;
+            label8.Text = "Driving:";
+            // 
+            // btnOnboard0
+            // 
+            btnOnboard0.Location = new Point(73, 78);
+            btnOnboard0.Name = "btnOnboard0";
+            btnOnboard0.Size = new Size(56, 23);
+            btnOnboard0.TabIndex = 19;
+            btnOnboard0.Text = "<";
+            btnOnboard0.UseVisualStyleBackColor = true;
+            btnOnboard0.Click += btnOnboard0_Click;
+            // 
+            // btnOnboard1
+            // 
+            btnOnboard1.Location = new Point(129, 78);
+            btnOnboard1.Name = "btnOnboard1";
+            btnOnboard1.Size = new Size(56, 23);
+            btnOnboard1.TabIndex = 18;
+            btnOnboard1.Text = ">";
+            btnOnboard1.UseVisualStyleBackColor = true;
+            btnOnboard1.Click += btnOnboard1_Click;
+            // 
+            // btnTrackside0
+            // 
+            btnTrackside0.Location = new Point(73, 49);
+            btnTrackside0.Name = "btnTrackside0";
+            btnTrackside0.Size = new Size(56, 23);
+            btnTrackside0.TabIndex = 17;
+            btnTrackside0.Text = "<";
+            btnTrackside0.UseVisualStyleBackColor = true;
+            btnTrackside0.Click += btnTrackside0_Click;
+            // 
+            // btnTrackside1
+            // 
+            btnTrackside1.Location = new Point(129, 49);
+            btnTrackside1.Name = "btnTrackside1";
+            btnTrackside1.Size = new Size(56, 23);
+            btnTrackside1.TabIndex = 16;
+            btnTrackside1.Text = ">";
+            btnTrackside1.UseVisualStyleBackColor = true;
+            btnTrackside1.Click += btnTrackside1_Click;
+            // 
+            // btnDriving0
+            // 
+            btnDriving0.Location = new Point(73, 23);
+            btnDriving0.Name = "btnDriving0";
+            btnDriving0.Size = new Size(56, 23);
+            btnDriving0.TabIndex = 15;
+            btnDriving0.Text = "<";
+            btnDriving0.UseVisualStyleBackColor = true;
+            btnDriving0.Click += btnDriving0_Click;
+            // 
+            // btnDriving1
+            // 
+            btnDriving1.Location = new Point(129, 23);
+            btnDriving1.Name = "btnDriving1";
+            btnDriving1.Size = new Size(56, 23);
+            btnDriving1.TabIndex = 14;
+            btnDriving1.Text = ">";
+            btnDriving1.UseVisualStyleBackColor = true;
+            btnDriving1.Click += btnDriving1_Click;
+            // 
             // Replay
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1602, 779);
+            Controls.Add(groupBox2);
             Controls.Add(txtCurrentDriver);
             Controls.Add(label7);
             Controls.Add(groupBox1);
@@ -671,6 +788,8 @@
             ((System.ComponentModel.ISupportInitialize)nudTimeSync).EndInit();
             cmLaptime.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -744,5 +863,15 @@
         private Button btnSpeed3;
         private Label label7;
         private TextBox txtCurrentDriver;
+        private GroupBox groupBox2;
+        private Label label9;
+        private Label label8;
+        private Button btnOnboard0;
+        private Button btnOnboard1;
+        private Button btnTrackside0;
+        private Button btnTrackside1;
+        private Button btnDriving0;
+        private Button btnDriving1;
+        private Label label10;
     }
 }

@@ -6,7 +6,7 @@ namespace LMUTools.Classes.LMURESTAPI
     public class LMUReplay
     {
         public int id { get; set; }
-        public string metadata { get; set; }
+        public object metadata { get; set; }
         public string replayDirectory { get; set; }
         public string replayName { get; set; }
         public double size { get; set; }
