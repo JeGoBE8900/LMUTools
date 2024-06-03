@@ -13,7 +13,7 @@ You'll probably need to install .NET Desktop Runtime 8 (https://dotnet.microsoft
 
 
 What is not (yet) implemented:
-- Changing views (cockpit, swingman, trackside, ...) Rest api unknown. Use keymaps in game.
+- Changing views is possible, but use keymaps for zoom in/out (cockpit, swingman, trackside, ...)
 
 Known issues:
 - Can causes freezes while driving and the tool is polling the rest API
