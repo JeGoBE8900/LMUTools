@@ -106,6 +106,7 @@
             btnTrackside1 = new Button();
             btnDriving0 = new Button();
             btnDriving1 = new Button();
+            btnReplayRefresh = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -134,7 +135,7 @@
             cboReplayFiles.FormattingEnabled = true;
             cboReplayFiles.Location = new Point(97, 35);
             cboReplayFiles.Name = "cboReplayFiles";
-            cboReplayFiles.Size = new Size(460, 23);
+            cboReplayFiles.Size = new Size(428, 23);
             cboReplayFiles.TabIndex = 1;
             cboReplayFiles.SelectedIndexChanged += cboReplayFiles_SelectedIndexChanged;
             // 
@@ -488,7 +489,7 @@
             // 
             // nudTimeSync
             // 
-            nudTimeSync.Location = new Point(1022, 11);
+            nudTimeSync.Location = new Point(1065, 11);
             nudTimeSync.Maximum = new decimal(new int[] { 360, 0, 0, 0 });
             nudTimeSync.Minimum = new decimal(new int[] { 360, 0, 0, int.MinValue });
             nudTimeSync.Name = "nudTimeSync";
@@ -499,7 +500,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(873, 14);
+            label4.Location = new Point(916, 14);
             label4.Name = "label4";
             label4.Size = new Size(143, 15);
             label4.TabIndex = 11;
@@ -529,7 +530,7 @@
             groupBox1.Controls.Add(btnSpeed5);
             groupBox1.Controls.Add(btnSpeed4);
             groupBox1.Controls.Add(btnSpeed3);
-            groupBox1.Location = new Point(873, 40);
+            groupBox1.Location = new Point(916, 40);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(528, 50);
             groupBox1.TabIndex = 12;
@@ -656,7 +657,7 @@
             groupBox2.Controls.Add(btnTrackside1);
             groupBox2.Controls.Add(btnDriving0);
             groupBox2.Controls.Add(btnDriving1);
-            groupBox2.Location = new Point(653, 6);
+            groupBox2.Location = new Point(696, 6);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(204, 113);
             groupBox2.TabIndex = 15;
@@ -750,11 +751,23 @@
             btnDriving1.UseVisualStyleBackColor = true;
             btnDriving1.Click += btnDriving1_Click;
             // 
+            // btnReplayRefresh
+            // 
+            btnReplayRefresh.BackgroundImage = Properties.Resources.refresh_double_rounded_flat;
+            btnReplayRefresh.BackgroundImageLayout = ImageLayout.Zoom;
+            btnReplayRefresh.Location = new Point(531, 33);
+            btnReplayRefresh.Name = "btnReplayRefresh";
+            btnReplayRefresh.Size = new Size(26, 25);
+            btnReplayRefresh.TabIndex = 16;
+            btnReplayRefresh.UseVisualStyleBackColor = true;
+            btnReplayRefresh.Click += btnReplayRefresh_Click;
+            // 
             // Replay
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1602, 779);
+            Controls.Add(btnReplayRefresh);
             Controls.Add(groupBox2);
             Controls.Add(txtCurrentDriver);
             Controls.Add(label7);
@@ -873,5 +886,6 @@
         private Button btnDriving0;
         private Button btnDriving1;
         private Label label10;
+        private Button btnReplayRefresh;
     }
 }

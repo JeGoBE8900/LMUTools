@@ -39,9 +39,9 @@ namespace LMUTools.Forms
 
             _timeBetweenCalls = 250;
 
-
-
         }
+
+        
 
         private async void bwReplayInfo_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
@@ -608,6 +608,20 @@ namespace LMUTools.Forms
         private void btnOnboard1_Click(object sender, EventArgs e)
         {
             oLMUAPIRestService.PostLMUReplayCameraControllerSetCamera(5);
+        }
+
+        private async void btnReplayRefresh_Click(object sender, EventArgs e)
+        {
+            var replays = (await oLMUAPIRestService.GetLMUReplaysAsync());
+            cboReplayFiles.Items.Clear();
+
+            foreach (Classes.LMURESTAPI.LMUReplay o in replays)
+            {
+
+                cboReplayFiles.Items.Add(o);
+
+
+            }
         }
     }
 }
