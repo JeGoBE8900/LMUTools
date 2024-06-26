@@ -41,7 +41,7 @@ namespace LMUTools.Forms
 
         }
 
-        
+
 
         private async void bwReplayInfo_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
@@ -357,7 +357,20 @@ namespace LMUTools.Forms
 
         private void lvwStandings_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var focusedItem = lvwStandings.FocusedItem;
 
+
+            if (focusedItem != null)
+            {
+
+                if (focusedItem.Tag != null)
+                {
+                    LMUStanding lmust = focusedItem.Tag as LMUStanding;
+
+                    oLMUAPIRestService.PutLMUReplayCameraSlotIdAsync(lmust.slotID);
+                }
+
+            }
         }
 
         private void cboResultIncDriver_SelectedIndexChanged(object sender, EventArgs e)
@@ -488,6 +501,17 @@ namespace LMUTools.Forms
 
         private void jumpToLapToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            JumpToLap();
+        }
+
+        private void lvwDriverLaptimes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            JumpToLap();
+        }
+
+        private void JumpToLap()
+        {
+
             var focusedItem = lvwDriverLaptimes.FocusedItem;
 
 
@@ -527,6 +551,7 @@ namespace LMUTools.Forms
                 }
 
             }
+
         }
 
         private void bwReplayInfo_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
@@ -623,5 +648,31 @@ namespace LMUTools.Forms
 
             }
         }
+
+        private void lvwIncidents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var focusedItem = lvwIncidents.FocusedItem;
+
+
+            if (focusedItem != null)
+            {
+
+                if (focusedItem.Tag != null)
+                {
+                    int slotid = int.Parse(focusedItem.SubItems[1].Text);
+                    string s = focusedItem.SubItems[0].Text;
+
+                    int sec = Convert.ToInt32(s) + Convert.ToInt32(nudTimeSync.Value);
+
+                    if (sec < 0) { sec = 0; }
+
+                    oLMUAPIRestService.PutLMUReplayCameraSlotIdAsync(slotid);
+                    oLMUAPIRestService.PutLMUReplayTimeAsync(sec);
+                }
+
+            }
+        }
+
+
     }
 }

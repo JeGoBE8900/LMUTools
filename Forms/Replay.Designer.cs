@@ -299,6 +299,7 @@
             lvwIncidents.TabIndex = 0;
             lvwIncidents.UseCompatibleStateImageBehavior = false;
             lvwIncidents.View = View.Details;
+            lvwIncidents.SelectedIndexChanged += lvwIncidents_SelectedIndexChanged;
             lvwIncidents.MouseClick += lvwIncidents_MouseClick;
             // 
             // columnHeader10
@@ -368,6 +369,7 @@
             lvwDriverLaptimes.TabIndex = 1;
             lvwDriverLaptimes.UseCompatibleStateImageBehavior = false;
             lvwDriverLaptimes.View = View.Details;
+            lvwDriverLaptimes.SelectedIndexChanged += lvwDriverLaptimes_SelectedIndexChanged;
             lvwDriverLaptimes.MouseClick += lvwDriverLaptimes_MouseClick;
             // 
             // columnHeader17
