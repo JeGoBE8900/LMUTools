@@ -1,5 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace LMUTools.Classes.LMURESTAPI
 {
@@ -63,7 +66,9 @@ namespace LMUTools.Classes.LMURESTAPI
         }
 
 
-        public async Task<LMUReplay> GetLMUReplayInfoAsync()
+        /* Not supported by LMU 0.9
+         * 
+         * public async Task<LMUReplay> GetLMUReplayInfoAsync()
         {
             try
             {
@@ -85,14 +90,16 @@ namespace LMUTools.Classes.LMURESTAPI
                 return null;
             }
 
-        }
+        }*/
 
         public async Task<Boolean> PutLMUReplayCameraSlotIdAsync(int slotId)
         {
             try
             {
+                StringContent queryString = new StringContent(slotId.ToString(), Encoding.UTF8, "application/json");
 
-                var httpResponse = await _client.PutAsync(BaseUrl + "/rest/replay/camera/" + slotId,null);
+                //var httpResponse = await _client.PutAsync(BaseUrl + "/rest/replay/camera/" + slotId,null);
+                var httpResponse = await _client.PutAsync(BaseUrl + "/rest/watch/focus/" + slotId,queryString);
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
@@ -118,7 +125,7 @@ namespace LMUTools.Classes.LMURESTAPI
             {
                 StringContent queryString = new StringContent(time.ToString(),Encoding.UTF8, "application/json");
 
-                var httpResponse = await _client.PutAsync(BaseUrl + "/rest/replay/replaytime", queryString);
+                var httpResponse = await _client.PutAsync(BaseUrl + "/rest/watch/replaytime/" + time.ToString(), queryString);
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
@@ -138,7 +145,23 @@ namespace LMUTools.Classes.LMURESTAPI
 
         }
 
-        public async Task<Boolean> PostLMUReplayPlaybackCommand(Int32 Speed)
+
+        public async Task<Boolean> PostLMUReplayPlaybackCommand(string Speed)
+        {
+            StringContent queryString = new StringContent(("{}").ToString(), Encoding.UTF8, "application/json");
+            var httpResponse = await _client.PutAsync(BaseUrl + "/rest/watch/replayCommand/" + Speed, queryString);
+
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
+        /*  OLD LMU Code until v0.5
+         * 
+         * public async Task<Boolean> PostLMUReplayPlaybackCommand(Int32 Speed)
         {
             try
             {
@@ -147,7 +170,7 @@ namespace LMUTools.Classes.LMURESTAPI
                 {
                     StringContent queryString = new StringContent(Speed.ToString(), Encoding.UTF8, "application/json");
 
-                    var httpResponse = await _client.PostAsync(BaseUrl + "/rest/replay/playbackcommand", queryString);
+                    var httpResponse = await _client.PostAsync(BaseUrl + "/rest/replay/playbackcommand/", queryString);
 
                     if (!httpResponse.IsSuccessStatusCode)
                     {
@@ -172,7 +195,7 @@ namespace LMUTools.Classes.LMURESTAPI
                 return false;
             }
 
-        }
+        }*/
 
         public async Task<String> GetLMUReplayPlayID(int ID)
         {
@@ -196,33 +219,44 @@ namespace LMUTools.Classes.LMURESTAPI
 
         }
 
-        public async Task<String> GetLMUSessionInfo()
+        public async Task<JObject> GetLMUSessionInfo()
         {
+            JObject jError = JObject.Parse("{\"error\" : \"true\" }");
+            JObject jContent = null;
+
             try
             {
-                var httpResponse = await _client.GetAsync(BaseUrl + "/rest/watch/sessionInfo/");
+                var httpResponse = await _client.GetAsync(BaseUrl + "/rest/watch/sessionInfo");
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
                     throw new Exception("Cannot get session info");
                 }
 
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var strContent = await httpResponse.Content.ReadAsStringAsync();
 
-                if(content.IndexOf("\"session\":\"INVALID\"") > -1)
+                if(strContent.IndexOf("\"session\":\"INVALID\"") > -1)
                 {
-                    content = "";
+                    return jError;
                 }
 
 
-                return content;
+                try {
+                    jContent = JObject.Parse(strContent);
+                }
+                catch (Exception ex)
+                {
+                    return jError;
+                }
+
+
+                return jContent;
 
             }
             catch (Exception ex)
             {
-                return "Cannot get session info";
-
-            }
+                return jError;
+            };
 
         }
 
@@ -230,7 +264,7 @@ namespace LMUTools.Classes.LMURESTAPI
         {
             try
             {
-                var httpResponse = await _client.GetAsync(BaseUrl + "/rest/watch/replay/isActive");
+                var httpResponse = await _client.GetAsync(BaseUrl + "/rest/replay/isActive");
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {

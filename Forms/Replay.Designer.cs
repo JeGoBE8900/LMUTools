@@ -86,16 +86,12 @@
             jumpToLapToolStripMenuItem = new ToolStripMenuItem();
             groupBox1 = new GroupBox();
             btnSpeed7 = new Button();
-            btnSpeed2 = new Button();
-            btnSpeed10 = new Button();
             btnSpeed6 = new Button();
             btnSpeed9 = new Button();
             btnSpeed8 = new Button();
             btnSpeed5 = new Button();
             btnSpeed4 = new Button();
             btnSpeed3 = new Button();
-            label7 = new Label();
-            txtCurrentDriver = new TextBox();
             groupBox2 = new GroupBox();
             label10 = new Label();
             label9 = new Label();
@@ -191,7 +187,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1587, 623);
+            tabPage1.Size = new Size(1587, 609);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Session Info";
             tabPage1.UseVisualStyleBackColor = true;
@@ -203,8 +199,10 @@
             txtSessionInfo.Multiline = true;
             txtSessionInfo.Name = "txtSessionInfo";
             txtSessionInfo.ReadOnly = true;
-            txtSessionInfo.Size = new Size(1581, 617);
+            txtSessionInfo.ScrollBars = ScrollBars.Both;
+            txtSessionInfo.Size = new Size(1581, 603);
             txtSessionInfo.TabIndex = 0;
+            txtSessionInfo.TextChanged += txtSessionInfo_TextChanged;
             // 
             // tabPage2
             // 
@@ -212,7 +210,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1587, 623);
+            tabPage2.Size = new Size(1587, 609);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Standings";
             tabPage2.UseVisualStyleBackColor = true;
@@ -226,7 +224,7 @@
             lvwStandings.Location = new Point(3, 3);
             lvwStandings.MultiSelect = false;
             lvwStandings.Name = "lvwStandings";
-            lvwStandings.Size = new Size(1581, 617);
+            lvwStandings.Size = new Size(1581, 603);
             lvwStandings.TabIndex = 0;
             lvwStandings.UseCompatibleStateImageBehavior = false;
             lvwStandings.View = View.Details;
@@ -292,10 +290,10 @@
             lvwIncidents.Columns.AddRange(new ColumnHeader[] { columnHeader10, columnHeader12, columnHeader11 });
             lvwIncidents.FullRowSelect = true;
             lvwIncidents.GridLines = true;
-            lvwIncidents.Location = new Point(0, 32);
+            lvwIncidents.Location = new Point(0, 33);
             lvwIncidents.MultiSelect = false;
             lvwIncidents.Name = "lvwIncidents";
-            lvwIncidents.Size = new Size(1587, 616);
+            lvwIncidents.Size = new Size(1587, 604);
             lvwIncidents.TabIndex = 0;
             lvwIncidents.UseCompatibleStateImageBehavior = false;
             lvwIncidents.View = View.Details;
@@ -323,7 +321,7 @@
             tabPage4.Controls.Add(lvwDriverLaptimes);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1587, 623);
+            tabPage4.Size = new Size(1587, 609);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Result | Driver laptimes";
             tabPage4.UseVisualStyleBackColor = true;
@@ -365,7 +363,7 @@
             lvwDriverLaptimes.Location = new Point(0, 34);
             lvwDriverLaptimes.MultiSelect = false;
             lvwDriverLaptimes.Name = "lvwDriverLaptimes";
-            lvwDriverLaptimes.Size = new Size(1587, 614);
+            lvwDriverLaptimes.Size = new Size(1587, 586);
             lvwDriverLaptimes.TabIndex = 1;
             lvwDriverLaptimes.UseCompatibleStateImageBehavior = false;
             lvwDriverLaptimes.View = View.Details;
@@ -524,8 +522,6 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(btnSpeed7);
-            groupBox1.Controls.Add(btnSpeed2);
-            groupBox1.Controls.Add(btnSpeed10);
             groupBox1.Controls.Add(btnSpeed6);
             groupBox1.Controls.Add(btnSpeed9);
             groupBox1.Controls.Add(btnSpeed8);
@@ -548,26 +544,6 @@
             btnSpeed7.Text = ">";
             btnSpeed7.UseVisualStyleBackColor = true;
             btnSpeed7.Click += btnSpeed7_Click;
-            // 
-            // btnSpeed2
-            // 
-            btnSpeed2.Location = new Point(6, 21);
-            btnSpeed2.Name = "btnSpeed2";
-            btnSpeed2.Size = new Size(56, 23);
-            btnSpeed2.TabIndex = 13;
-            btnSpeed2.Text = "<<<<";
-            btnSpeed2.UseVisualStyleBackColor = true;
-            btnSpeed2.Click += btnSpeed2_Click;
-            // 
-            // btnSpeed10
-            // 
-            btnSpeed10.Location = new Point(453, 21);
-            btnSpeed10.Name = "btnSpeed10";
-            btnSpeed10.Size = new Size(56, 23);
-            btnSpeed10.TabIndex = 18;
-            btnSpeed10.Text = ">>>>";
-            btnSpeed10.UseVisualStyleBackColor = true;
-            btnSpeed10.Click += btnSpeed10_Click;
             // 
             // btnSpeed6
             // 
@@ -630,24 +606,6 @@
             btnSpeed3.UseVisualStyleBackColor = true;
             btnSpeed3.Click += btnSpeed3_Click;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(10, 95);
-            label7.Name = "label7";
-            label7.Size = new Size(83, 15);
-            label7.TabIndex = 13;
-            label7.Text = "Current driver:";
-            // 
-            // txtCurrentDriver
-            // 
-            txtCurrentDriver.Enabled = false;
-            txtCurrentDriver.Location = new Point(97, 91);
-            txtCurrentDriver.Name = "txtCurrentDriver";
-            txtCurrentDriver.ReadOnly = true;
-            txtCurrentDriver.Size = new Size(460, 23);
-            txtCurrentDriver.TabIndex = 14;
-            // 
             // groupBox2
             // 
             groupBox2.Controls.Add(label10);
@@ -680,7 +638,7 @@
             label9.AutoSize = true;
             label9.Location = new Point(6, 52);
             label9.Name = "label9";
-            label9.Size = new Size(58, 15);
+            label9.Size = new Size(59, 15);
             label9.TabIndex = 21;
             label9.Text = "Trackside:";
             // 
@@ -771,8 +729,6 @@
             ClientSize = new Size(1602, 779);
             Controls.Add(btnReplayRefresh);
             Controls.Add(groupBox2);
-            Controls.Add(txtCurrentDriver);
-            Controls.Add(label7);
             Controls.Add(groupBox1);
             Controls.Add(label4);
             Controls.Add(nudTimeSync);
@@ -868,16 +824,12 @@
         private ToolStripMenuItem jumpToLapToolStripMenuItem;
         private GroupBox groupBox1;
         private Button btnSpeed7;
-        private Button btnSpeed2;
-        private Button btnSpeed10;
         private Button btnSpeed6;
         private Button btnSpeed9;
         private Button btnSpeed8;
         private Button btnSpeed5;
         private Button btnSpeed4;
         private Button btnSpeed3;
-        private Label label7;
-        private TextBox txtCurrentDriver;
         private GroupBox groupBox2;
         private Label label9;
         private Label label8;

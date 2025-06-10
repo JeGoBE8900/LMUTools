@@ -31,7 +31,6 @@
             menuStrip1 = new MenuStrip();
             replayToolStripMenuItem = new ToolStripMenuItem();
             replayToolStripMenuItem1 = new ToolStripMenuItem();
-            vCRStreamToolStripMenuItem = new ToolStripMenuItem();
             optionsToolStripMenuItem = new ToolStripMenuItem();
             restAPIRefreshRateToolStripMenuItem = new ToolStripMenuItem();
             tsmiCurrentRefreshRate = new ToolStripMenuItem();
@@ -57,9 +56,9 @@
             // 
             // replayToolStripMenuItem
             // 
-            replayToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { replayToolStripMenuItem1, vCRStreamToolStripMenuItem });
+            replayToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { replayToolStripMenuItem1 });
             replayToolStripMenuItem.Name = "replayToolStripMenuItem";
-            replayToolStripMenuItem.Size = new Size(46, 20);
+            replayToolStripMenuItem.Size = new Size(47, 20);
             replayToolStripMenuItem.Text = "Tools";
             // 
             // replayToolStripMenuItem1
@@ -68,14 +67,6 @@
             replayToolStripMenuItem1.Size = new Size(180, 22);
             replayToolStripMenuItem1.Text = "Replay";
             replayToolStripMenuItem1.Click += replayToolStripMenuItem1_Click;
-            // 
-            // vCRStreamToolStripMenuItem
-            // 
-            vCRStreamToolStripMenuItem.Name = "vCRStreamToolStripMenuItem";
-            vCRStreamToolStripMenuItem.Size = new Size(180, 22);
-            vCRStreamToolStripMenuItem.Text = "VCR Stream";
-            vCRStreamToolStripMenuItem.Visible = false;
-            vCRStreamToolStripMenuItem.Click += vCRStreamToolStripMenuItem_Click;
             // 
             // optionsToolStripMenuItem
             // 
@@ -94,32 +85,32 @@
             // tsmiCurrentRefreshRate
             // 
             tsmiCurrentRefreshRate.Name = "tsmiCurrentRefreshRate";
-            tsmiCurrentRefreshRate.Size = new Size(151, 22);
+            tsmiCurrentRefreshRate.Size = new Size(180, 22);
             tsmiCurrentRefreshRate.Text = "Current: ";
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(148, 6);
+            toolStripMenuItem1.Size = new Size(177, 6);
             // 
             // tsmiAdd1000ms
             // 
             tsmiAdd1000ms.Name = "tsmiAdd1000ms";
-            tsmiAdd1000ms.Size = new Size(151, 22);
+            tsmiAdd1000ms.Size = new Size(180, 22);
             tsmiAdd1000ms.Text = "+1000 ms";
             tsmiAdd1000ms.Click += tsmiAdd1000ms_Click;
             // 
             // tsmiSubtract1000ms
             // 
             tsmiSubtract1000ms.Name = "tsmiSubtract1000ms";
-            tsmiSubtract1000ms.Size = new Size(151, 22);
+            tsmiSubtract1000ms.Size = new Size(180, 22);
             tsmiSubtract1000ms.Text = "- 1000 ms";
             tsmiSubtract1000ms.Click += tsmiSubtract1000ms_Click;
             // 
             // tsmiDisableRefreshRate
             // 
             tsmiDisableRefreshRate.Name = "tsmiDisableRefreshRate";
-            tsmiDisableRefreshRate.Size = new Size(151, 22);
+            tsmiDisableRefreshRate.Size = new Size(180, 22);
             tsmiDisableRefreshRate.Text = "Disable refresh";
             tsmiDisableRefreshRate.Click += tsmiDisableRefreshRate_Click;
             // 
@@ -135,7 +126,7 @@
             // tsslRestApi
             // 
             tsslRestApi.Name = "tsslRestApi";
-            tsslRestApi.Size = new Size(110, 17);
+            tsslRestApi.Size = new Size(111, 17);
             tsslRestApi.Text = "REST API not online";
             // 
             // bwRestStatus
@@ -177,6 +168,5 @@
         private ToolStripMenuItem tsmiSubtract1000ms;
         private ToolStripMenuItem tsmiDisableRefreshRate;
         private ToolStripMenuItem replayToolStripMenuItem1;
-        private ToolStripMenuItem vCRStreamToolStripMenuItem;
     }
 }

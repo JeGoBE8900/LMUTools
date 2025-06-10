@@ -41,6 +41,7 @@ namespace LMUTools.Forms
             ofdResultFile.CheckFileExists = true;
             ofdResultFile.Filter = "tmp|*.tmp";
 
+
             if (ofdResultFile.ShowDialog() == DialogResult.OK && txtFile.Text != ofdResultFile.SafeFileName)
             {
                 txtFile.Text = ofdResultFile.FileName;
@@ -78,7 +79,7 @@ namespace LMUTools.Forms
 
         public void MonitorTailOfFile(string filePath)
         {
-            var initialFileSize = new FileInfo(filePath).Length;
+            /*var initialFileSize = new FileInfo(filePath).Length;
             var lastReadLength = initialFileSize - 1024;
             if (lastReadLength < 0) lastReadLength = 0;
 
@@ -106,7 +107,7 @@ namespace LMUTools.Forms
                                // txtConsole.Text = text;
 
 
-                            using (FileStream data = new FileStream("F:\\test.vcr", FileMode.Append))
+                            using (FileStream data = new FileStream("F:\\VCRReplay\\Sebring International Raceway P1 41.vcr", FileMode.Append))
                             {
                                 data.Write(buffer);
                             }
@@ -117,9 +118,47 @@ namespace LMUTools.Forms
 
 
                 Thread.Sleep(1000);
+            }*/
+
+            var lastReadLength = 0;
+
+            while (true)
+            {
+
+
+              //  var fileSize = new FileInfo(filePath).Length;
+
+                //if (fileSize > lastReadLength)
+               // {
+
+                    var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                    fs.Seek(lastReadLength, SeekOrigin.Begin);
+                    var buffer = new byte[1024];
+
+
+                    var bytesRead = fs.Read(buffer, 0, buffer.Length);
+                    lastReadLength += bytesRead;
+
+                    using (FileStream data = new FileStream("F:\\VCRReplay\\Sebring International Raceway P1 41.vcr", FileMode.Append)){
+                         data.Write(buffer);
+                    }
+
+                    if(bytesRead == 0)
+                {
+                    Thread.Sleep(1000);
+                }
+
+               // }
+     
             }
+
+
+           
         }
 
 
+
     }
+
+
 }

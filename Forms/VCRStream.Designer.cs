@@ -36,6 +36,10 @@
             label2 = new Label();
             btnStart = new Button();
             btnStop = new Button();
+            folderBrowserDialog1 = new FolderBrowserDialog();
+            label3 = new Label();
+            button2 = new Button();
+            txtFolder = new TextBox();
             SuspendLayout();
             // 
             // txtFile
@@ -109,11 +113,41 @@
             btnStop.Text = "Stop";
             btnStop.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(12, 44);
+            label3.Name = "label3";
+            label3.Size = new Size(25, 15);
+            label3.TabIndex = 9;
+            label3.Text = "File";
+            // 
+            // button2
+            // 
+            button2.Location = new Point(525, 39);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 8;
+            button2.Text = "Browse";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // txtFolder
+            // 
+            txtFolder.Enabled = false;
+            txtFolder.Location = new Point(43, 40);
+            txtFolder.Name = "txtFolder";
+            txtFolder.ReadOnly = true;
+            txtFolder.Size = new Size(476, 23);
+            txtFolder.TabIndex = 7;
+            // 
             // VCRStream
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1025, 447);
+            Controls.Add(label3);
+            Controls.Add(button2);
+            Controls.Add(txtFolder);
             Controls.Add(btnStop);
             Controls.Add(btnStart);
             Controls.Add(label2);
@@ -137,5 +171,9 @@
         private Label label2;
         private Button btnStart;
         private Button btnStop;
+        private FolderBrowserDialog folderBrowserDialog1;
+        private Label label3;
+        private Button button2;
+        private TextBox txtFolder;
     }
 }

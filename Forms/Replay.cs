@@ -1,4 +1,5 @@
 ﻿using LMUTools.Classes.LMURESTAPI;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
@@ -49,6 +50,8 @@ namespace LMUTools.Forms
             {
 
                 //Replay info, get last played or current playing replayfle
+                /* NOT SUPPORT BY LMU V0.9
+                 * 
                 Classes.LMURESTAPI.LMUReplay replayInfo = (await oLMUAPIRestService.GetLMUReplayInfoAsync());
                 string sReplayInfo = "";
 
@@ -60,6 +63,8 @@ namespace LMUTools.Forms
                 Action actionReplayInfo = () => txtReplayInfo.Text = sReplayInfo;
                 txtReplayInfo.Invoke(actionReplayInfo);
 
+                */
+
 
                 Thread.Sleep(_timeBetweenCalls);
                 if (closePending) { break; }
@@ -67,9 +72,9 @@ namespace LMUTools.Forms
 
                 //session information
 
-                string sessionInfo = (await oLMUAPIRestService.GetLMUSessionInfo());
+                JObject sessionInfo = (await oLMUAPIRestService.GetLMUSessionInfo());
 
-                Action actionSessionInfo = () => txtSessionInfo.Text = sessionInfo;
+                Action actionSessionInfo = () => txtSessionInfo.Text = sessionInfo.ToString();
                 txtSessionInfo.Invoke(actionSessionInfo);
 
 
@@ -142,8 +147,8 @@ namespace LMUTools.Forms
 
                 if (standings.Count == 0)
                 {
-                    Action updateCurrentDriverTextBox = () => txtCurrentDriver.Text = "";
-                    txtCurrentDriver.Invoke(updateCurrentDriverTextBox);
+                    //Action updateCurrentDriverTextBox = () => txtCurrentDriver.Text = "";
+                    //txtCurrentDriver.Invoke(updateCurrentDriverTextBox);
                 }
 
                 Thread.Sleep(_timeBetweenCalls);
@@ -176,7 +181,7 @@ namespace LMUTools.Forms
 
                 if (o.hasFocus)
                 {
-                    txtCurrentDriver.Text = 'p' + o.position + " - " + o.driverName;
+                    //txtCurrentDriver.Text = 'p' + o.position + " - " + o.driverName;
                 }
             }
 
@@ -258,6 +263,8 @@ namespace LMUTools.Forms
             else if (Directory.Exists("C:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results")) { sInitialDir = "C:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results"; }
             else if (Directory.Exists("D:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results")) { sInitialDir = "D:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results"; }
             else if (Directory.Exists("E:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results")) { sInitialDir = "E:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results"; }
+            else if (Directory.Exists("F:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results")) { sInitialDir = "F:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results"; }
+            else if (Directory.Exists("S:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results")) { sInitialDir = "S:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results"; }
             else if (Directory.Exists("C:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results")) { sInitialDir = "C:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results"; }
             else if (Directory.Exists("D:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results")) { sInitialDir = "D:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results"; }
             else if (Directory.Exists("E:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results")) { sInitialDir = "E:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log\\Results"; }
@@ -282,9 +289,10 @@ namespace LMUTools.Forms
 
                 cboResultIncDriver.Items.Clear();
                 cboResultLapDriver.Items.Clear();
-                cboResultIncDriver.Items.Add("All drivers");
+                cboResultIncDriver.Items.Add("- All drivers -");
 
                 List<XElement> listDrivers = (from row in _ResultXMLContent.Descendants("Driver") select row).ToList();
+
                 foreach (XElement row in listDrivers)
                 {
                     string sName = row.Element("Name").Value;
@@ -295,6 +303,9 @@ namespace LMUTools.Forms
 
                 cboResultIncDriver.SelectedIndex = 0;
                 cboResultLapDriver.SelectedIndex = 0;
+
+                cboResultIncDriver.Sorted = true;
+                cboResultLapDriver.Sorted = true;
 
                 RefreshListviewIncident();
                 RefreshListviewLaptimes();
@@ -395,7 +406,7 @@ namespace LMUTools.Forms
                     time = time.Substring(0, time.IndexOf("."));
                     string incident = row.Value;
 
-                    if (cboResultIncDriver.SelectedIndex == 0 || cboResultIncDriver.SelectedIndex > 0 && incident.IndexOf(cboResultIncDriver.Text) > -1)
+                    if (cboResultIncDriver.Text == "- All drivers -" || incident.IndexOf(cboResultIncDriver.Text) > -1)
                     {
                         ListViewItem o = new ListViewItem(time);
                         o.Tag = row;
@@ -560,49 +571,40 @@ namespace LMUTools.Forms
             closePending = false;
         }
 
-        private void btnSpeed2_Click(object sender, EventArgs e)
-        {
-            oLMUAPIRestService.PostLMUReplayPlaybackCommand(2);
-        }
-
         private void btnSpeed3_Click(object sender, EventArgs e)
         {
-            oLMUAPIRestService.PostLMUReplayPlaybackCommand(3);
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand("VCRCOMMAND_REVERSESCANFAST");
         }
 
         private void btnSpeed4_Click(object sender, EventArgs e)
         {
-            oLMUAPIRestService.PostLMUReplayPlaybackCommand(4);
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand("VCRCOMMAND_PLAYBACKWARDS");
         }
 
         private void btnSpeed5_Click(object sender, EventArgs e)
         {
-            oLMUAPIRestService.PostLMUReplayPlaybackCommand(5);
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand("VCRCOMMAND_SLOWBACKWARDS");
         }
 
         private void btnSpeed6_Click(object sender, EventArgs e)
         {
-            oLMUAPIRestService.PostLMUReplayPlaybackCommand(6);
+            //oLMUAPIRestService.PostLMUReplayPlaybackCommand(6);
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand("VCRCOMMAND_STOP");
         }
 
         private void btnSpeed7_Click(object sender, EventArgs e)
         {
-            oLMUAPIRestService.PostLMUReplayPlaybackCommand(7);
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand("VCRCOMMAND_SLOW");
         }
 
         private void btnSpeed8_Click(object sender, EventArgs e)
         {
-            oLMUAPIRestService.PostLMUReplayPlaybackCommand(8);
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand("VCRCOMMAND_PLAY");
         }
 
         private void btnSpeed9_Click(object sender, EventArgs e)
         {
-            oLMUAPIRestService.PostLMUReplayPlaybackCommand(9);
-        }
-
-        private void btnSpeed10_Click(object sender, EventArgs e)
-        {
-            oLMUAPIRestService.PostLMUReplayPlaybackCommand(10);
+            oLMUAPIRestService.PostLMUReplayPlaybackCommand("VCRCOMMAND_FORWARDSCANFAST");
         }
 
         private void btnDriving0_Click(object sender, EventArgs e)
@@ -673,6 +675,9 @@ namespace LMUTools.Forms
             }
         }
 
+        private void txtSessionInfo_TextChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }
