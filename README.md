@@ -11,6 +11,8 @@ You'll probably need to install .NET Desktop Runtime 8 (https://dotnet.microsoft
 
 ![image](https://github.com/JeGoBE8900/LMUTools/assets/168869412/e9301375-88a6-45d2-b46c-584aa5927d77)
 
+Latest change:
+- Made the tool work with LMU release of 10/6/2025 - 0.9.
 
 What is not (yet) implemented:
 - Changing views is possible, but use keymaps for zoom in/out (cockpit, swingman, trackside, ...)
