@@ -2,14 +2,14 @@
 
 A little project to make myself easy to use Le Mans ultimate
 - Replay: 
-browse, load replay files, combined with result xml file to jump to a driver on a certain moment in the session. Use the right mouse button in the listview to select and jump to the moment on track for that driver.
+browse, load replay files, combined with result xml file to jump to a driver on a certain moment in the session. Use the right/left mouse button in the listview to select and jump to the moment on track for that driver.
 speed controller
 
 We use the rest API of Le Mans Ultimate.
 Made with Visual Studio Community 2022.
 You'll probably need to install .NET Desktop Runtime 8 (https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 
-![image](https://github.com/JeGoBE8900/LMUTools/assets/168869412/81db2ff5-6eb0-4e2c-8d16-aebe0a5d48b9)
+![image](https://github.com/JeGoBE8900/LMUTools/assets/168869412/e9301375-88a6-45d2-b46c-584aa5927d77)
 
 
 What is not (yet) implemented:
