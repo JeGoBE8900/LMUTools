@@ -71,12 +71,16 @@
             columnHeader20 = new ColumnHeader();
             columnHeader21 = new ColumnHeader();
             columnHeader22 = new ColumnHeader();
+            tabPage5 = new TabPage();
+            lvwTraceLog = new ListView();
+            columnHeader23 = new ColumnHeader();
+            columnHeader24 = new ColumnHeader();
             lblIsActive = new Label();
             cmStanding = new ContextMenuStrip(components);
             jumpToDriverToolStripMenuItem = new ToolStripMenuItem();
             label3 = new Label();
             txtReplayFile = new TextBox();
-            button1 = new Button();
+            btnResultFileBrowse = new Button();
             ofdResultFile = new OpenFileDialog();
             cmIncident = new ContextMenuStrip(components);
             jumpToIncidentToolStripMenuItem = new ToolStripMenuItem();
@@ -103,11 +107,15 @@
             btnDriving0 = new Button();
             btnDriving1 = new Button();
             btnReplayRefresh = new Button();
+            btnLogFileBrowse = new Button();
+            txtTraceFile = new TextBox();
+            label7 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
             cmStanding.SuspendLayout();
             cmIncident.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudTimeSync).BeginInit();
@@ -175,10 +183,11 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage5);
             tabControl1.Location = new Point(6, 125);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1595, 651);
+            tabControl1.Size = new Size(1507, 525);
             tabControl1.TabIndex = 5;
             // 
             // tabPage1
@@ -187,7 +196,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1587, 609);
+            tabPage1.Size = new Size(1499, 497);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Session Info";
             tabPage1.UseVisualStyleBackColor = true;
@@ -200,7 +209,7 @@
             txtSessionInfo.Name = "txtSessionInfo";
             txtSessionInfo.ReadOnly = true;
             txtSessionInfo.ScrollBars = ScrollBars.Both;
-            txtSessionInfo.Size = new Size(1581, 603);
+            txtSessionInfo.Size = new Size(1493, 491);
             txtSessionInfo.TabIndex = 0;
             txtSessionInfo.TextChanged += txtSessionInfo_TextChanged;
             // 
@@ -210,7 +219,7 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1587, 609);
+            tabPage2.Size = new Size(1587, 623);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Standings";
             tabPage2.UseVisualStyleBackColor = true;
@@ -224,7 +233,7 @@
             lvwStandings.Location = new Point(3, 3);
             lvwStandings.MultiSelect = false;
             lvwStandings.Name = "lvwStandings";
-            lvwStandings.Size = new Size(1581, 603);
+            lvwStandings.Size = new Size(1581, 617);
             lvwStandings.TabIndex = 0;
             lvwStandings.UseCompatibleStateImageBehavior = false;
             lvwStandings.View = View.Details;
@@ -260,7 +269,7 @@
             tabPage3.Controls.Add(lvwIncidents);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1587, 623);
+            tabPage3.Size = new Size(1499, 497);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Result | Incidents";
             tabPage3.UseVisualStyleBackColor = true;
@@ -293,7 +302,7 @@
             lvwIncidents.Location = new Point(0, 33);
             lvwIncidents.MultiSelect = false;
             lvwIncidents.Name = "lvwIncidents";
-            lvwIncidents.Size = new Size(1587, 604);
+            lvwIncidents.Size = new Size(1499, 461);
             lvwIncidents.TabIndex = 0;
             lvwIncidents.UseCompatibleStateImageBehavior = false;
             lvwIncidents.View = View.Details;
@@ -321,7 +330,7 @@
             tabPage4.Controls.Add(lvwDriverLaptimes);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1587, 609);
+            tabPage4.Size = new Size(1499, 497);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Result | Driver laptimes";
             tabPage4.UseVisualStyleBackColor = true;
@@ -363,7 +372,7 @@
             lvwDriverLaptimes.Location = new Point(0, 34);
             lvwDriverLaptimes.MultiSelect = false;
             lvwDriverLaptimes.Name = "lvwDriverLaptimes";
-            lvwDriverLaptimes.Size = new Size(1587, 586);
+            lvwDriverLaptimes.Size = new Size(1499, 460);
             lvwDriverLaptimes.TabIndex = 1;
             lvwDriverLaptimes.UseCompatibleStateImageBehavior = false;
             lvwDriverLaptimes.View = View.Details;
@@ -420,6 +429,39 @@
             columnHeader22.Text = "Rear tyre";
             columnHeader22.Width = 100;
             // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(lvwTraceLog);
+            tabPage5.Location = new Point(4, 24);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(1499, 497);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "Trace log";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // lvwTraceLog
+            // 
+            lvwTraceLog.Columns.AddRange(new ColumnHeader[] { columnHeader23, columnHeader24 });
+            lvwTraceLog.Dock = DockStyle.Fill;
+            lvwTraceLog.FullRowSelect = true;
+            lvwTraceLog.GridLines = true;
+            lvwTraceLog.Location = new Point(0, 0);
+            lvwTraceLog.MultiSelect = false;
+            lvwTraceLog.Name = "lvwTraceLog";
+            lvwTraceLog.Size = new Size(1499, 497);
+            lvwTraceLog.TabIndex = 1;
+            lvwTraceLog.UseCompatibleStateImageBehavior = false;
+            lvwTraceLog.View = View.Details;
+            // 
+            // columnHeader23
+            // 
+            columnHeader23.Text = "Seconds";
+            // 
+            // columnHeader24
+            // 
+            columnHeader24.Text = "Log line";
+            columnHeader24.Width = 500;
+            // 
             // lblIsActive
             // 
             lblIsActive.AutoSize = true;
@@ -460,15 +502,15 @@
             txtReplayFile.Size = new Size(460, 23);
             txtReplayFile.TabIndex = 8;
             // 
-            // button1
+            // btnResultFileBrowse
             // 
-            button1.Location = new Point(563, 62);
-            button1.Name = "button1";
-            button1.Size = new Size(43, 23);
-            button1.TabIndex = 9;
-            button1.Text = "...";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
+            btnResultFileBrowse.Location = new Point(563, 62);
+            btnResultFileBrowse.Name = "btnResultFileBrowse";
+            btnResultFileBrowse.Size = new Size(43, 23);
+            btnResultFileBrowse.TabIndex = 9;
+            btnResultFileBrowse.Text = "...";
+            btnResultFileBrowse.UseVisualStyleBackColor = true;
+            btnResultFileBrowse.Click += button1_Click_1;
             // 
             // ofdResultFile
             // 
@@ -722,17 +764,48 @@
             btnReplayRefresh.UseVisualStyleBackColor = true;
             btnReplayRefresh.Click += btnReplayRefresh_Click;
             // 
+            // btnLogFileBrowse
+            // 
+            btnLogFileBrowse.Location = new Point(563, 91);
+            btnLogFileBrowse.Name = "btnLogFileBrowse";
+            btnLogFileBrowse.Size = new Size(43, 23);
+            btnLogFileBrowse.TabIndex = 19;
+            btnLogFileBrowse.Text = "...";
+            btnLogFileBrowse.UseVisualStyleBackColor = true;
+            btnLogFileBrowse.Click += btnLogFileBrowse_Click;
+            // 
+            // txtTraceFile
+            // 
+            txtTraceFile.Enabled = false;
+            txtTraceFile.Location = new Point(97, 91);
+            txtTraceFile.Name = "txtTraceFile";
+            txtTraceFile.ReadOnly = true;
+            txtTraceFile.Size = new Size(460, 23);
+            txtTraceFile.TabIndex = 18;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(12, 94);
+            label7.Name = "label7";
+            label7.Size = new Size(74, 15);
+            label7.TabIndex = 17;
+            label7.Text = "Tracelog file:";
+            // 
             // Replay
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1602, 779);
+            ClientSize = new Size(1514, 653);
+            Controls.Add(btnLogFileBrowse);
+            Controls.Add(txtTraceFile);
+            Controls.Add(label7);
             Controls.Add(btnReplayRefresh);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(label4);
             Controls.Add(nudTimeSync);
-            Controls.Add(button1);
+            Controls.Add(btnResultFileBrowse);
             Controls.Add(txtReplayFile);
             Controls.Add(label3);
             Controls.Add(lblIsActive);
@@ -754,6 +827,7 @@
             tabPage3.PerformLayout();
             tabPage4.ResumeLayout(false);
             tabPage4.PerformLayout();
+            tabPage5.ResumeLayout(false);
             cmStanding.ResumeLayout(false);
             cmIncident.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)nudTimeSync).EndInit();
@@ -792,7 +866,7 @@
         private ToolStripMenuItem jumpToDriverToolStripMenuItem;
         private Label label3;
         private TextBox txtReplayFile;
-        private Button button1;
+        private Button btnResultFileBrowse;
         private TabPage tabPage3;
         private OpenFileDialog ofdResultFile;
         private ListView lvwIncidents;
@@ -841,5 +915,12 @@
         private Button btnDriving1;
         private Label label10;
         private Button btnReplayRefresh;
+        private Button btnLogFileBrowse;
+        private TextBox txtTraceFile;
+        private Label label7;
+        private TabPage tabPage5;
+        private ListView lvwTraceLog;
+        private ColumnHeader columnHeader23;
+        private ColumnHeader columnHeader24;
     }
 }

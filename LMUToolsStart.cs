@@ -149,25 +149,6 @@ namespace LMUTools
             }
         }
 
-        private void vCRStreamToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (Form frm in MdiChildren)
-            {
-                if (frm is Forms.VCRStream)
-                {
-                    if (frm.WindowState == FormWindowState.Minimized)
-                        frm.WindowState = FormWindowState.Maximized;
-                    frm.Focus();
-                    return;
-                }
-            }
 
-            Forms.VCRStream newMDIChild = new Forms.VCRStream { };
-            // Set the Parent Form of the Child window.
-            newMDIChild.MdiParent = this;
-            newMDIChild.WindowState = FormWindowState.Maximized;
-            // Display the new form.
-            newMDIChild.Show();
-        }
     }
 }

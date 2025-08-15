@@ -5,6 +5,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using static System.Windows.Forms.LinkLabel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace LMUTools.Forms
 {
@@ -292,6 +294,7 @@ namespace LMUTools.Forms
                 cboResultIncDriver.Items.Add("- All drivers -");
 
                 List<XElement> listDrivers = (from row in _ResultXMLContent.Descendants("Driver") select row).ToList();
+
 
                 foreach (XElement row in listDrivers)
                 {
@@ -678,6 +681,72 @@ namespace LMUTools.Forms
         private void txtSessionInfo_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnLogFileBrowse_Click(object sender, EventArgs e)
+        {
+            var sInitialDir = "";
+
+            if (Directory.Exists("F:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "F:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("C:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "C:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("D:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "D:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("E:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "E:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("F:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "F:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("S:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "S:\\SteamLibrary\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("C:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "C:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("D:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "D:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("E:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "E:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("F:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "F:\\Program Files(x86)\\Steam\\steamapps\\common\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("C:\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "C:\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("D:\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "D:\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("E:\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "E:\\Le Mans Ultimate\\UserData\\Log"; }
+            else if (Directory.Exists("F:\\Le Mans Ultimate\\UserData\\Log")) { sInitialDir = "F:\\Le Mans Ultimate\\UserData\\Log"; }
+
+            if (sInitialDir.Length > 0) { ofdResultFile.InitialDirectory = sInitialDir; }
+            ofdResultFile.Title = "Select trace txt file";
+            ofdResultFile.Multiselect = false;
+            ofdResultFile.CheckFileExists = true;
+            ofdResultFile.Filter = "Txt|trace_*.txt";
+
+            if (ofdResultFile.ShowDialog() == DialogResult.OK && txtTraceFile.Text != ofdResultFile.SafeFileName)
+            {
+                lvwTraceLog.Items.Clear();
+
+                txtTraceFile.Text = ofdResultFile.SafeFileName;
+
+                System.Collections.Generic.IEnumerable<String> sTraceLines = File.ReadLines(ofdResultFile.FileName);
+
+
+                foreach (var line in sTraceLines)
+                {
+
+
+                    if (line.Trim().Length == 0) { continue; } //skip empty lines
+                    if(line.Trim().ToLower().StartsWith("trace")) { continue; } //skip trace lines
+                    if(line.Trim().ToLower().IndexOf("s ") == -1) { continue; } //skip lines without seconds
+
+                    string[] filter = new string[] { "[state change]", "track limits", "formation penalty", "local penalty", "network penalty"};
+
+                    var seconds = line.Trim().Substring(0, line.Trim().IndexOf("s ")).Trim();
+                    var logmessage = line.Trim().Substring(line.Trim().IndexOf("s ") + 1).Trim();
+
+                    foreach (string s in filter)
+                    {
+                        if (logmessage.Trim().ToLower().IndexOf(s) > -1) {
+
+                            ListViewItem o = new ListViewItem(seconds);
+                            o.Tag = line;
+                            o.SubItems.Add(logmessage);
+
+
+                            lvwTraceLog.Items.Add(o);
+
+                        } 
+                    }
+                   
+                }
+
+            }
         }
     }
 }
