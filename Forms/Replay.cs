@@ -107,7 +107,9 @@ namespace LMUTools.Forms
                 var standings = (await oLMUAPIRestService.GetLMUStandingAsync());
 
                 //eerst zien hoeveel listview items we nodig hebben
-                int slots2add = standings.Count - lvwStandings.Items.Count;
+                int slots2add = 0;
+
+                if (standings != null) { slots2add = standings.Count - lvwStandings.Items.Count; }
                 if (slots2add > 0)
                 {
                     for (int i = 0; i < slots2add; i++)
@@ -138,20 +140,26 @@ namespace LMUTools.Forms
 
                 if (closePending) { break; }
 
-                foreach (Classes.LMURESTAPI.LMUStanding o in standings)
+                if (standings != null)
                 {
-                    if (o.position > 0)
+
+                    foreach (Classes.LMURESTAPI.LMUStanding o in standings)
                     {
-                        Action actionUpdateStanding3 = () => UpdateListviewItem(o);
-                        lvwStandings.Invoke(actionUpdateStanding3);
+                        if (o.position > 0)
+                        {
+                            Action actionUpdateStanding3 = () => UpdateListviewItem(o);
+                            lvwStandings.Invoke(actionUpdateStanding3);
+                        }
                     }
+
+                    if (standings.Count == 0)
+                    {
+                        //Action updateCurrentDriverTextBox = () => txtCurrentDriver.Text = "";
+                        //txtCurrentDriver.Invoke(updateCurrentDriverTextBox);
+                    }
+
                 }
 
-                if (standings.Count == 0)
-                {
-                    //Action updateCurrentDriverTextBox = () => txtCurrentDriver.Text = "";
-                    //txtCurrentDriver.Invoke(updateCurrentDriverTextBox);
-                }
 
                 Thread.Sleep(_timeBetweenCalls);
                 if (closePending) { break; }

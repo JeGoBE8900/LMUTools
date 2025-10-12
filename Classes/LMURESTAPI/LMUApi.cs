@@ -49,7 +49,8 @@ namespace LMUTools.Classes.LMURESTAPI
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
-                    throw new Exception("Cannot retrieve replays");
+                    return null;
+                    //throw new Exception("Cannot retrieve replays");
                 }
 
                 var content = await httpResponse.Content.ReadAsStringAsync();
@@ -221,7 +222,7 @@ namespace LMUTools.Classes.LMURESTAPI
 
         public async Task<JObject> GetLMUSessionInfo()
         {
-            JObject jError = JObject.Parse("{\"error\" : \"true\" }");
+            JObject jError = JObject.Parse("{\"error\" : \"no session info\" }");
             JObject jContent = null;
 
             try
