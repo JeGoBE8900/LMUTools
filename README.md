@@ -12,6 +12,7 @@ You'll probably need to install .NET Desktop Runtime 8 (https://dotnet.microsoft
 ![image](https://github.com/JeGoBE8900/LMUTools/assets/168869412/e9301375-88a6-45d2-b46c-584aa5927d77)
 
 Latest change:
+- Application crash due to change in rest api (0.1.1)
 - A bigfix reported by a user (0.1.0)
 - Added possibility to load tracelog file for penalty, track limit, ... events (0.1.0)
 - Made the tool work with LMU release of 10/6/2025 - 0.9.
